@@ -2,26 +2,26 @@ import { Lookup } from './lookup';
 export interface IProduct{
     id:number;
     name:string;
-    code:string;
-    category:Lookup;
-    unit:Lookup
-    salesRate:number;
-    purchaseRate:number
+    salery:string;
+    designation:Lookup;
+    department:Lookup;
+    deduction:number;
+    experience:number
 }
 export class Product {
     id:number;
     name:string;
-    code:string;
-    category:Lookup;
-    unit:Lookup
-    salesRate:number;
-    purchaseRate:number
-    constructor(name?:string,code?:string,category?:Lookup,unit?:Lookup,salesRate?:number, purchaseRate?:number){
+    salery:string;
+    designation:Lookup;
+    department:Lookup;
+    deduction:number;
+    experience:number
+    constructor(name?:string,salery?:string,designation?:Lookup,department?:Lookup,deduction?:number, experience?:number){
         this.name = name;
-        this.code = code;
-        this.category = category;
-        this.unit = unit;
-        this.salesRate = salesRate;
-        this.purchaseRate = purchaseRate;
+        this.salery = salery;
+        this.designation = designation;
+        this.department = department;
+        this.deduction = deduction;
+        this.experience = experience;
     }
 }

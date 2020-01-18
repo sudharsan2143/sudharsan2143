@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { IProduct } from '../models/product';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../service/employee.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
 
-  product$:Observable<IProduct>;
+  employee$:Observable<IProduct>;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +21,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.product$ = this.route.paramMap.pipe(
+    this.employee$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
           this.productService.getProductById(Number.parseInt(params.get('id')))
         ));
@@ -29,8 +29,8 @@ export class ViewComponent implements OnInit {
 
     editProduct(product):void{
       
-      this.product$.subscribe(product =>{
-        console.log('edit clicked');
+      this.employee$.subscribe(product =>{
+        //console.log('edit clicked');
         this.router.navigate(['products/edit/'+product.id]);
       });
   }

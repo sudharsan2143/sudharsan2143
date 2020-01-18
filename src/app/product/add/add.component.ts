@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../service/employee.service';
 import { LookupService } from '../service/lookup.service';
 import { Product, IProduct } from '../models/product';
 import { Observable, Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { isNullOrUndefined } from 'util';
 })
 export class AddComponent implements OnInit {
   formSubmitted = false;
-  productForm = this.fb.group({});
+  employeeForm = this.fb.group({});
   units:Observable<Lookup[]>;
   categories:Observable<Lookup[]>;
   constructor(private fb:FormBuilder,
@@ -26,13 +26,13 @@ export class AddComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.productForm.addControl('id',new FormControl(''));
-    this.productForm.addControl('name',new FormControl('',[Validators.required]));
-    this.productForm.addControl('code',new FormControl('',[Validators.required]));
-    this.productForm.addControl('category',new FormControl('',[Validators.required]));
-    this.productForm.addControl('unit',new FormControl('',[Validators.required]));
-    this.productForm.addControl('purchaseRate',new FormControl('',[Validators.required]));
-    this.productForm.addControl('salesRate',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('id',new FormControl(''));
+    this.employeeForm.addControl('name',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('salery',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('category',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('unit',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('deduction',new FormControl('',[Validators.required]));
+    this.employeeForm.addControl('experience',new FormControl('',[Validators.required]));
     this.units = this.lookupService.getUnits();
     this.categories = this.lookupService.getProductCategories();
 
@@ -44,13 +44,13 @@ export class AddComponent implements OnInit {
         product$.subscribe(product=>{
           if(!isNullOrUndefined(product)){
             console.log(product);
-            this.productForm.get('id').setValue(product.id);
-            this.productForm.get('name').setValue(product.name);
-            this.productForm.get('code').setValue(product.code);
-            this.productForm.get('category').setValue(product.category.code);
-            this.productForm.get('unit').setValue(product.unit.code);
-            this.productForm.get('salesRate').setValue(product.salesRate);
-            this.productForm.get('purchaseRate').setValue(product.purchaseRate);
+            this.employeeForm.get('id').setValue(product.id);
+            this.employeeForm.get('name').setValue(product.name);
+            this.employeeForm.get('salery').setValue(product.salery);
+            this.employeeForm.get('category').setValue(product.designation.code);
+            this.employeeForm.get('unit').setValue(product.department.code);
+            this.employeeForm.get('experience').setValue(product.experience);
+            this.employeeForm.get('deduction').setValue(product.deduction);
           }
         })
 
@@ -60,7 +60,7 @@ export class AddComponent implements OnInit {
   save($event:any):void{
 
     this.formSubmitted = true;
-    if(!this.productForm.valid){
+    if(!this.employeeForm.valid){
       return;
     }
 
@@ -72,8 +72,8 @@ export class AddComponent implements OnInit {
 
   saveAndContinue($event:any):void{
     this.formSubmitted = true;
-    console.log(this.productForm.get('name').errors);
-    if(!this.productForm.valid){
+    console.log(this.employeeForm.get('name').errors);
+    if(!this.employeeForm.valid){
       return;
     }
 
@@ -82,21 +82,21 @@ export class AddComponent implements OnInit {
   }
 
   saveProduct():void{
-    const product =new Product();
+    const employees =new Product();
     // map data from form to product
-    product.id = this.productForm.get('id').value;
-    product.name = this.productForm.get('name').value;
-    product.code = this.productForm.get('code').value;
-    product.category = this.getLookupObjFromCode(this.productForm.get('category').value);
-    product.unit =  this.getLookupObjFromCode(this.productForm.get('unit').value);
-    product.purchaseRate =  this.productForm.get('purchaseRate').value;
-    product.salesRate = this.productForm.get('salesRate').value;
+    employees.id = this.employeeForm.get('id').value;
+    employees.name = this.employeeForm.get('name').value;
+    employees.salery = this.employeeForm.get('salery').value;
+    employees.designation = this.getLookupObjFromCode(this.employeeForm.get('category').value);
+    employees.department =  this.getLookupObjFromCode(this.employeeForm.get('unit').value);
+    employees.deduction =  this.employeeForm.get('deduction').value;
+    employees.experience = this.employeeForm.get('experience').value;
 
     // save to database
-    if(product.id == 0){
-      this.productService.addNewProduct(product);}
+    if(employees.id == 0){
+      this.productService.addNewEmployees(employees);}
       else {
-        this.productService.updateProduct(product);
+        this.productService.updateEmployees(employees);
       }
   }
   getLookupObjFromCode(code:string):Lookup{

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, IProduct } from '../models/product';
 import { Observable } from 'rxjs';
-import { ProductService } from '../service/product.service';
+import { ProductService } from '../service/employee.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,17 +11,17 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  public products:Observable<IProduct[]> = null;
+  public Employees:Observable<IProduct[]> = null;
   constructor(
     private router: Router,
     private productService:ProductService) { }
 
   ngOnInit() {
-      this.products = this.productService.getAllProducts()
+      this.Employees = this.productService.getAllEmployees()
   }
 
   deleteProduct(product):void{
-    const result = this.productService.deleteProduct(product);
+    const result = this.productService.deleteEmployees(product);
     console.log(result);
   }
 

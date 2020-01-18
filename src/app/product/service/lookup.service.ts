@@ -8,17 +8,17 @@ import { Observable, of } from 'rxjs';
 export class LookupService {
 
   private units: Array<Lookup> =[
-    {name:'PCS', code:"1", category:1},
-    {name:'Carton', code:"2", category:1},
-    {name:'Gram', code:"3", category:1},
-    {name:'Ltr', code:"4", category:1}
+    {name:'SE', code:"1", category:1},
+    {name:'UI', code:"2", category:1},
+    {name:'Full Stack', code:"3", category:1},
+    {name:'Java', code:"4", category:1}
   ];
 
   private productCategories:Array<Lookup> = [
-    {name:'PCS', code:"1", category:1},
-    {name:'Carton', code:"2", category:1},
-    {name:'Gram', code:"3", category:1},
-    {name:'Ltr', code:"4", category:1}
+    {name:'Software Enginer', code:"1", category:1},
+    {name:'UI Developer', code:"2", category:1},
+    {name:'Full Stack Developer', code:"3", category:1},
+    {name:'Java Developer', code:"4", category:1}
   ];
 
   constructor() { }

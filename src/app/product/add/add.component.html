@@ -3,23 +3,23 @@
       <h4>Add Product</h4>
     </div>
   </div>
-  <form [formGroup]="productForm">
+  <form [formGroup]="employeeForm">
     <div class="jumbotron col-sm-8" style="margin:auto">
       <div class="form-group row">
         <label for="" class="col-sm-2 col-form-label">Employee Name</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" formControlName="name">
-          <div *ngIf="formSubmitted && productForm.get('name').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('name').errors.required">Employee Name is required</div>
+          <div *ngIf="formSubmitted && employeeForm.get('name').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('name').errors.required">Employee Name is required</div>
           </div>
         </div>
       </div>
       <div class="form-group row">
         <label for="" class="col-sm-2 col-form-label">Salery</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" formControlName="code">
-          <div *ngIf="formSubmitted && productForm.get('code').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('code').errors.required">Salery is required</div>
+          <input type="text" class="form-control" formControlName="salery">
+          <div *ngIf="formSubmitted && employeeForm.get('salery').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('salery').errors.required">Salery is required</div>
           </div>
         </div>
         
@@ -31,8 +31,8 @@
               <option value="" *ngFor="let category of categories | async" 
               [value]="category.code" >{{category.name}}</option>
           </select>
-          <div *ngIf="formSubmitted && productForm.get('category').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('category').errors.required">Designation is required</div>
+          <div *ngIf="formSubmitted && employeeForm.get('category').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('category').errors.required">Designation is required</div>
           </div>
         </div>
       </div>
@@ -42,24 +42,24 @@
           <select name="" id="" class="form-control"  formControlName="unit">
               <option *ngFor="let unit of units | async" [value]="unit.code">{{unit.name}}</option>
           </select>
-          <div *ngIf="formSubmitted && productForm.get('unit').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('unit').errors.required">Department is required</div>
+          <div *ngIf="formSubmitted && employeeForm.get('unit').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('unit').errors.required">Department is required</div>
           </div>
         </div>
       </div>
       <div class="form-group row">
         <label for="" class="col-sm-2 col-form-label">Deduction Rate</label>
         <div class="col-sm-4">
-          <input type="text" appNumberonly class="form-control"   formControlName="purchaseRate">
-          <div *ngIf="formSubmitted && productForm.get('purchaseRate').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('purchaseRate').errors.required">Deduction rate is required</div>
+          <input type="text" appNumberonly class="form-control"   formControlName="deduction">
+          <div *ngIf="formSubmitted && employeeForm.get('deduction').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('deduction').errors.required">Deduction rate is required</div>
           </div>
         </div>
         <label for="" class="col-sm-2 col-form-label">Years of Experience</label>
         <div class="col-sm-4">
-          <input type="text" appNumberonly class="form-control"   formControlName="salesRate">
-          <div *ngIf="formSubmitted && productForm.get('salesRate').errors"  class="invalid-error">
-            <div *ngIf="productForm.get('salesRate').errors.required">Years of Experience is required</div>
+          <input type="text" appNumberonly class="form-control"   formControlName="experience">
+          <div *ngIf="formSubmitted && employeeForm.get('experience').errors"  class="invalid-error">
+            <div *ngIf="employeeForm.get('experience').errors.required">Years of Experience is required</div>
           </div>
         </div>
       </div>
